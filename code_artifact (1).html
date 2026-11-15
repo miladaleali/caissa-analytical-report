@@ -1,0 +1,1905 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>کایسا | گزارش تحلیلی چشم‌انداز ۳ ماهه</title>
+
+  <!-- Vazirmatn Font with safe system fallbacks -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =========================================================================
+       1. DESIGN TOKENS & BASE PALETTE (#000000, #eae9e8, #f2f2f2, #f9f9f9)
+       ========================================================================= */
+    :root {
+      --bg-outer: #e5e4e2;
+      --bg-canvas: #f9f9f9;
+      --bg-surface: #f2f2f2;
+      --bg-elevated: #ffffff;
+      --border-subtle: #eae9e8;
+      --border-strong: #d4d3d1;
+      --ink-primary: #000000;
+      --ink-secondary: #404040;
+      --ink-muted: #737373;
+
+      /* Functional Semantic Accents */
+      --accent-crimson: #b91c1c;
+      --accent-crimson-soft: #fef2f2;
+      --accent-amber: #b45309;
+      --accent-amber-soft: #fffbeb;
+      --accent-emerald: #15803d;
+      --accent-emerald-soft: #f0fdf4;
+      --accent-blue: #1d4ed8;
+      --accent-blue-soft: #eff6ff;
+      --accent-navy: #0f294a;
+      --accent-slate: #475569;
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-pill: 999px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-family: 'Vazirmatn', Tahoma, -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-outer);
+      color: var(--ink-primary);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      background-color: var(--bg-outer);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* =========================================================================
+       2. STRICTLY MOBILE-ONLY SINGLE-COLUMN SHELL (max-width: 430px)
+       ========================================================================= */
+    .mobile-shell {
+      width: 100%;
+      max-width: 430px;
+      min-height: 100vh;
+      margin: 0 auto;
+      background-color: var(--bg-canvas);
+      border-left: 1px solid var(--border-subtle);
+      border-right: 1px solid var(--border-subtle);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* =========================================================================
+       3. STICKY HEADER & HORIZONTAL NAVIGATION PILLS
+       ========================================================================= */
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background-color: rgba(249, 249, 249, 0.94);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px 8px;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-box {
+      width: 30px;
+      height: 34px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .brand-title {
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      color: var(--ink-primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--ink-muted);
+    }
+
+    .badge-pill {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background-color: var(--ink-primary);
+      color: #ffffff;
+    }
+
+    .nav-scroll {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 16px 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .nav-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-pill {
+      flex-shrink: 0;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      background-color: var(--bg-surface);
+      color: var(--ink-secondary);
+      border: 1px solid var(--border-subtle);
+      transition: all 0.18s ease;
+    }
+
+    .nav-pill.active,
+    .nav-pill:hover {
+      background-color: var(--ink-primary);
+      color: #ffffff;
+      border-color: var(--ink-primary);
+    }
+
+    /* =========================================================================
+       4. MAIN CONTENT & SECTION CARDS
+       ========================================================================= */
+    .main-content {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      flex: 1;
+    }
+
+    .report-section {
+      scroll-margin-top: 96px;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .section-kicker {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--ink-muted);
+      display: block;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 900;
+      color: var(--ink-primary);
+      margin: 2px 0 0;
+      line-height: 1.35;
+    }
+
+    .elevated-card {
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 12px;
+    }
+
+    /* =========================================================================
+       5. HERO & EXECUTIVE SUMMARY (خلاصه احتمالات)
+       ========================================================================= */
+    .hero-card {
+      background-color: var(--ink-primary);
+      color: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 20px 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-watermark {
+      position: absolute;
+      top: 12px;
+      left: 14px;
+      opacity: 0.08;
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      background-color: rgba(255, 255, 255, 0.12);
+      color: #f2f2f2;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 10px;
+    }
+
+    .hero-title {
+      font-size: 24px;
+      font-weight: 900;
+      margin: 0;
+      line-height: 1.25;
+      color: #ffffff;
+    }
+
+    .hero-subtitle {
+      font-size: 12px;
+      color: #d4d4d4;
+      margin: 6px 0 0;
+      line-height: 1.5;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .kpi-card {
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 12px 8px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .kpi-card.is-dominant {
+      background-color: var(--ink-primary);
+      border-color: var(--ink-primary);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    .kpi-label {
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .kpi-value {
+      font-size: 22px;
+      font-weight: 900;
+      line-height: 1.1;
+    }
+
+    .kpi-note {
+      font-size: 10px;
+      opacity: 0.75;
+    }
+
+    .segmented-bar {
+      height: 10px;
+      width: 100%;
+      background-color: var(--border-subtle);
+      border-radius: var(--radius-pill);
+      overflow: hidden;
+      display: flex;
+      gap: 2px;
+    }
+
+    /* =========================================================================
+       6. FULL-OPEN HIERARCHICAL RTL MIND MAP
+       ========================================================================= */
+    .filter-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+    }
+
+    .filter-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-btn {
+      flex-shrink: 0;
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 11px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-elevated);
+      color: var(--ink-primary);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s ease;
+    }
+
+    .filter-btn.active {
+      background-color: var(--ink-primary);
+      color: #ffffff;
+      border-color: var(--ink-primary);
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    /* Map-style scenario tree: colored rounded connectors, thumb-sized nodes */
+    .tree-root-box {
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tree-branch-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 12px 8px 0 0;
+      padding-right: 24px;
+    }
+
+    .tree-item {
+      position: relative;
+    }
+
+    /* Spine segment bridging the parent node down to the next sibling */
+    .tree-item::before {
+      content: '';
+      position: absolute;
+      top: -13px;
+      bottom: 0;
+      right: -24px;
+      width: 0;
+      border-right: 1.5px solid var(--line, #c7c6c4);
+    }
+
+    /* Last child has no sibling below: its node draws the terminating elbow */
+    .tree-item:last-child::before {
+      content: none;
+    }
+
+    /* Rounded branch: tail down from the parent spine, elbow into the node centre */
+    .node-box::before {
+      content: '';
+      position: absolute;
+      top: -13px;
+      /* -25px: 24px gutter + the node's own 1px border, so it meets the spine exactly */
+      right: -25px;
+      width: 25px;
+      height: calc(50% + 13px);
+      border-right: 1.5px solid var(--line, #c7c6c4);
+      border-bottom: 1.5px solid var(--elbow, #c7c6c4);
+      border-bottom-right-radius: 14px;
+      pointer-events: none;
+    }
+
+    .node-box.is-root::before {
+      content: none;
+    }
+
+    .tree-item.is-dimmed::before,
+    .tree-item.is-dimmed > .node-box::before {
+      border-color: #e2e1df;
+    }
+
+    .node-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      position: relative;
+      width: fit-content;
+      max-width: 100%;
+      min-height: 40px;
+      padding: 9px 10px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border-strong);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.45;
+      color: var(--ink-primary);
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      transition: background-color 0.16s ease, border-color 0.16s ease, opacity 0.16s ease;
+    }
+
+    .node-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      min-width: 0;
+      text-align: right;
+    }
+
+    .node-box:active {
+      background-color: var(--bg-surface);
+    }
+
+    .node-box:hover {
+      border-color: #999999;
+    }
+
+    .node-box.is-root {
+      width: 100%;
+      border: 1.5px solid var(--ink-primary);
+      background-color: var(--bg-surface);
+      font-size: 12.5px;
+      font-weight: 900;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .node-box.is-actor-header {
+      background-color: var(--ink-primary);
+      color: #ffffff;
+      border-color: var(--ink-primary);
+      min-height: 44px;
+      padding: 10px 11px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .node-box.is-actor-header.actor-blue {
+      background-color: var(--accent-navy);
+      border-color: var(--accent-navy);
+    }
+
+    .node-box.is-dimmed {
+      opacity: 0.28;
+    }
+
+    .node-box.is-in-chain {
+      background-color: var(--border-subtle);
+      border-color: var(--ink-primary);
+      opacity: 1;
+    }
+
+    .node-box.is-selected {
+      background-color: var(--ink-primary) !important;
+      color: #ffffff !important;
+      border-color: var(--ink-primary) !important;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16);
+      opacity: 1 !important;
+    }
+
+    .node-pct {
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 7px;
+      border-radius: 6px;
+      background-color: var(--bg-surface);
+      color: var(--ink-primary);
+      border: 1px solid var(--border-subtle);
+      flex-shrink: 0;
+    }
+
+    .is-actor-header .node-pct,
+    .is-selected .node-pct {
+      background-color: rgba(255, 255, 255, 0.18);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .breadcrumb-box {
+      background-color: var(--border-subtle);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 10px 12px;
+      font-size: 11px;
+    }
+
+    /* =========================================================================
+       7. ELECTIONS & PORTFOLIO UTILITIES
+       ========================================================================= */
+    .bloc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+
+    .bloc-mini-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 8px 6px;
+      text-align: center;
+    }
+
+    .party-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .party-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11.5px;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 7px;
+      background-color: var(--border-subtle);
+      border-radius: var(--radius-pill);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: var(--radius-pill);
+    }
+
+    .headline-banner {
+      background-color: var(--ink-primary);
+      color: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 11px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    /* Portfolio Section (Dark High-Contrast Theme) */
+    .portfolio-section {
+      background-color: var(--ink-primary);
+      color: #ffffff;
+      border-color: var(--ink-primary);
+    }
+
+    .portfolio-dark-card {
+      background-color: #121212;
+      border: 1px solid #262626;
+      border-radius: var(--radius-md);
+      padding: 14px;
+    }
+
+    .asset-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .asset-card {
+      background-color: #121212;
+      border: 1px solid #262626;
+      border-radius: var(--radius-md);
+      padding: 10px;
+      cursor: pointer;
+      transition: all 0.16s ease;
+    }
+
+    .asset-card.is-active {
+      background-color: #1f1f1f;
+      border-color: #ffffff;
+    }
+
+    .preset-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+    }
+
+    .preset-btn {
+      font-family: inherit;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 7px 8px;
+      border-radius: var(--radius-sm);
+      background-color: #1a1a1a;
+      color: #e5e5e5;
+      border: 1px solid #2e2e2e;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .preset-btn.active {
+      background-color: #ffffff;
+      color: #000000;
+      border-color: #ffffff;
+    }
+
+    .calc-input-row {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .calc-input {
+      flex: 1;
+      min-width: 0;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 8px 10px;
+      border-radius: var(--radius-sm);
+      background-color: #000000;
+      color: #ffffff;
+      border: 1px solid #333333;
+      outline: none;
+    }
+
+    .calc-input:focus {
+      border-color: #ffffff;
+    }
+
+    .unit-toggle {
+      display: flex;
+      background-color: #000000;
+      border: 1px solid #333333;
+      border-radius: var(--radius-sm);
+      padding: 2px;
+    }
+
+    .unit-btn {
+      font-family: inherit;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 6px 8px;
+      border: none;
+      border-radius: 6px;
+      background: transparent;
+      color: #a3a3a3;
+      cursor: pointer;
+    }
+
+    .unit-btn.active {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    .footer-bar {
+      background-color: var(--bg-surface);
+      border-top: 1px solid var(--border-subtle);
+      padding: 16px;
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .top-btn {
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 7px 12px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-elevated);
+      color: var(--ink-primary);
+      border: 1px solid var(--border-subtle);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="mobile-shell">
+
+    <!-- STICKY TOP HEADER & QUICK-JUMP NAVIGATION -->
+    <header class="sticky-header">
+      <div class="header-top">
+        <div class="brand-group">
+          <div class="logo-box">
+            <!-- Exact Geometric Caissa SVG Logo (caissaLogo_2.svg) -->
+            <svg viewBox="0 0 100 120" width="100%" height="100%" aria-label="لوگوی کایسا">
+              <rect x="62" y="0" width="38" height="38" fill="#000000" />
+              <rect x="0" y="38" width="62" height="62" fill="#000000" />
+              <rect x="62" y="100" width="24" height="20" fill="#000000" />
+            </svg>
+          </div>
+          <div>
+            <div class="brand-title">
+              <span>CAISSA</span>
+              <span style="color: #d4d3d1;">|</span>
+              <span>کایسا</span>
+            </div>
+            <div class="brand-sub">گزارش تحلیلی چشم‌انداز ۳ ماهه</div>
+          </div>
+        </div>
+        <span class="badge-pill">ارائه تحلیلی</span>
+      </div>
+
+      <nav class="nav-scroll" aria-label="ناوبری بخش‌های گزارش">
+        <a href="#sec-summary" class="nav-pill active">خلاصه احتمالات</a>
+        <a href="#sec-mindmap" class="nav-pill">نقشه ذهنی</a>
+        <a href="#sec-israel" class="nav-pill">انتخابات اسرائیل</a>
+        <a href="#sec-us" class="nav-pill">انتخابات آمریکا</a>
+        <a href="#sec-portfolio" class="nav-pill">سبد کایسا</a>
+      </nav>
+    </header>
+
+    <main class="main-content">
+
+      <!-- =====================================================================
+           HERO & EXECUTIVE SUMMARY (خلاصه احتمالات)
+           ===================================================================== -->
+      <section id="sec-summary" class="report-section" style="background: transparent; border: none; padding: 0; gap: 12px;">
+        <div class="hero-card">
+          <div class="hero-watermark">
+            <svg viewBox="0 0 100 120" width="90" height="108">
+              <rect x="62" y="0" width="38" height="38" fill="#ffffff" />
+              <rect x="0" y="38" width="62" height="62" fill="#ffffff" />
+              <rect x="62" y="100" width="24" height="20" fill="#ffffff" />
+            </svg>
+          </div>
+          <div class="hero-tag">
+            <span class="dot" style="background-color: #ffffff;"></span>
+            افق میان‌مدت ژئوپلیتیک و بازارها
+          </div>
+          <h1 class="hero-title">چشم‌انداز ۳ ماهه</h1>
+          <p class="hero-subtitle">گزارش تحلیلی سناریوهای میان‌مدت و آرایش سیاسی</p>
+        </div>
+
+        <div class="report-section">
+          <div class="section-header">
+            <div>
+              <span class="section-kicker">تجمیع وزنی سناریوها</span>
+              <h2 class="section-title">خلاصه احتمالات</h2>
+            </div>
+            <span style="font-size: 10px; font-weight: 700; color: var(--ink-muted); background: var(--bg-elevated); border: 1px solid var(--border-subtle); padding: 3px 8px; border-radius: 6px;">
+              مجموع ۹۹٪
+            </span>
+          </div>
+
+          <!-- 3 KPI Summary Cards -->
+          <div class="kpi-grid">
+            <div class="kpi-card is-dominant">
+              <div class="kpi-label">
+                <span class="dot" style="background-color: #f59e0b;"></span>
+                <span>محاصره</span>
+              </div>
+              <div class="kpi-value" style="color: #fbbf24;">۵۹٪</div>
+              <div class="kpi-note">سناریوی غالب</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-label">
+                <span class="dot" style="background-color: var(--accent-crimson);"></span>
+                <span>جنگ</span>
+              </div>
+              <div class="kpi-value" style="color: var(--accent-crimson);">۲۶٪</div>
+              <div class="kpi-note">تنش نظامی</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-label">
+                <span class="dot" style="background-color: var(--accent-emerald);"></span>
+                <span>توافق</span>
+              </div>
+              <div class="kpi-value" style="color: var(--accent-emerald);">۱۴٪</div>
+              <div class="kpi-note">دیپلماسی</div>
+            </div>
+          </div>
+
+          <!-- Segmented Horizontal Probability Bar -->
+          <div class="space-y-1">
+            <div class="segmented-bar" role="img" aria-label="نمودار توزیع احتمالات: ۵۹ درصد محاصره، ۲۶ درصد جنگ، ۱۴ درصد توافق">
+              <div style="width: 59.6%; background-color: #b45309; height: 100%;"></div>
+              <div style="width: 26.3%; background-color: #b91c1c; height: 100%;"></div>
+              <div style="width: 14.1%; background-color: #15803d; height: 100%;"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--ink-muted); margin-top: 6px;">
+              <span>محاصره (۵۹٪)</span>
+              <span>جنگ (۲۶٪)</span>
+              <span>توافق (۱۴٪)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           SECTION 1: FULL-OPEN HIERARCHICAL MIND MAP (سناریوهای میان‌مدت ۳ ماهه)
+           ===================================================================== -->
+      <section id="sec-mindmap" class="report-section">
+        <div class="section-header">
+          <div>
+            <span class="section-kicker">بخش اول • ساختار درختی کامل</span>
+            <h2 class="section-title">سناریوهای میان‌مدت ۳ ماهه</h2>
+          </div>
+          <span style="font-size: 10px; font-weight: 800; background: var(--ink-primary); color: #ffffff; padding: 3px 8px; border-radius: 6px;">
+            نمای باز کامل
+          </span>
+        </div>
+
+        <!-- Outcome Filter Pills -->
+        <div class="filter-row" id="mm-filter-bar">
+          <button type="button" class="filter-btn active" data-filter="all">همه سناریوها</button>
+          <button type="button" class="filter-btn" data-filter="war">
+            <span class="dot" style="background-color: var(--accent-crimson);"></span>
+            فقط جنگ
+          </button>
+          <button type="button" class="filter-btn" data-filter="siege">
+            <span class="dot" style="background-color: var(--accent-amber);"></span>
+            فقط محاصره
+          </button>
+          <button type="button" class="filter-btn" data-filter="deal">
+            <span class="dot" style="background-color: var(--accent-emerald);"></span>
+            فقط توافق
+          </button>
+        </div>
+
+        <!-- Full Open Hierarchical Mind Map Container -->
+        <div id="mindmap-root" class="tree-root-box">
+          <!-- Rendered completely open by renderMindMap() -->
+        </div>
+
+        <!-- Selected Path Breadcrumb Bar -->
+        <div class="breadcrumb-box">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+            <span style="font-size: 10px; font-weight: 700; color: var(--ink-secondary);">مسیر انتخاب‌شده در نقشه:</span>
+            <button type="button" id="mm-reset-btn" style="display: none; font-family: inherit; font-size: 10px; font-weight: 800; background: none; border: none; color: var(--ink-primary); text-decoration: underline; cursor: pointer; padding: 0;">
+              بازنشانی انتخاب
+            </button>
+          </div>
+          <div id="mm-breadcrumb" style="font-weight: 800; color: var(--ink-primary); line-height: 1.55;">
+            روی هر گره ضربه بزنید تا زنجیره ارتباطی آن از ریشه تا نتیجه برجسته شود
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           SECTION 2: ISRAEL 2026 ELECTION RESULTS (نتیجه انتخابات اسرائیل ۲۰۲۶)
+           ===================================================================== -->
+      <section id="sec-israel" class="report-section">
+        <div class="section-header">
+          <div>
+            <span class="section-kicker">بخش دوم • آرایش پارلمانی</span>
+            <h2 class="section-title">نتیجه انتخابات اسرائیل ۲۰۲۶</h2>
+          </div>
+          <span style="font-size: 10px; font-weight: 800; background: var(--bg-elevated); border: 1px solid var(--border-subtle); padding: 4px 8px; border-radius: 6px; text-align: left;">
+            ۱۲۰ کرسی کنست<br />
+            <span style="color: var(--ink-muted); font-weight: 600;">اکثریت: ۶۱ کرسی</span>
+          </span>
+        </div>
+
+        <!-- 120-Seat Semi-Circular Knesset SVG Parliament Arc -->
+        <div class="elevated-card" style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="width: 100%; display: flex; justify-content: center;">
+            <svg id="knesset-svg" viewBox="0 0 300 165" style="width: 100%; max-width: 300px; height: auto; overflow: visible;" aria-label="نمودار ۱۲۰ کرسی کنست اسرائیل"></svg>
+          </div>
+
+          <!-- 3 Bloc Summary Cards -->
+          <div class="bloc-grid">
+            <div class="bloc-mini-card">
+              <div style="font-size: 10px; font-weight: 700; color: var(--accent-navy); display: flex; align-items: center; justify-content: center; gap: 4px;">
+                <span class="dot" style="background-color: var(--accent-navy);"></span>
+                بلوک نتانیاهو
+              </div>
+              <div style="font-size: 18px; font-weight: 900; margin-top: 2px;">۵۳</div>
+              <div style="font-size: 10px; color: var(--ink-muted);">کرسی</div>
+            </div>
+
+            <div class="bloc-mini-card">
+              <div style="font-size: 10px; font-weight: 700; color: var(--accent-blue); display: flex; align-items: center; justify-content: center; gap: 4px;">
+                <span class="dot" style="background-color: var(--accent-blue);"></span>
+                اپوزیسیون آیزنکوت
+              </div>
+              <div style="font-size: 18px; font-weight: 900; margin-top: 2px;">۴۸</div>
+              <div style="font-size: 10px; color: var(--ink-muted);">کرسی</div>
+            </div>
+
+            <div class="bloc-mini-card">
+              <div style="font-size: 10px; font-weight: 700; color: var(--accent-emerald); display: flex; align-items: center; justify-content: center; gap: 4px;">
+                <span class="dot" style="background-color: var(--accent-emerald);"></span>
+                احزاب عربی
+              </div>
+              <div style="font-size: 18px; font-weight: 900; margin-top: 2px;">۱۹</div>
+              <div style="font-size: 10px; color: var(--ink-muted);">کرسی</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Complete 11-Party Horizontal Bar Breakdown -->
+        <div class="elevated-card" style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px;">
+            <span style="font-size: 12px; font-weight: 800;">توزیع کرسی‌ها به تفکیک حزب</span>
+            <span style="font-size: 10px; color: var(--ink-muted);">۱۱ حزب (مجموع ۱۲۰ کرسی)</span>
+          </div>
+
+          <div id="israel-parties-container" style="display: flex; flex-direction: column; gap: 9px;">
+            <!-- Populated by renderIsraelParties() -->
+          </div>
+
+          <div style="border-top: 1px solid var(--border-subtle); padding-top: 8px; display: flex; justify-content: space-between; font-size: 10px; color: var(--ink-muted);">
+            <span>منبع: کمیته مرکزی انتخابات</span>
+            <span>Central Elections Committee</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           SECTION 3: US 2026 ELECTION RESULTS (نتیجه انتخابات ۲۰۲۶ آمریکا)
+           ===================================================================== -->
+      <section id="sec-us" class="report-section">
+        <div class="section-header">
+          <div>
+            <span class="section-kicker">بخش سوم • سیاست داخلی ایالات متحده</span>
+            <h2 class="section-title">نتیجه انتخابات ۲۰۲۶ آمریکا</h2>
+          </div>
+        </div>
+
+        <div class="headline-banner">
+          <span style="width: 24px; height: 24px; border-radius: 6px; background-color: var(--accent-blue); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 13px;">✓</span>
+          <span>دموکرات‌ها اکثریت هر دو مجلس کنگره را به دست آوردند</span>
+        </div>
+
+        <!-- Senate Card -->
+        <div class="elevated-card" style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <span style="font-size: 12.5px; font-weight: 900;">مجلس سنا (Senate)</span>
+            <span style="font-size: 10px; font-weight: 700; background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 2px 8px; border-radius: 6px;">
+              ۵۰ کرسی لازم برای کنترل
+            </span>
+          </div>
+
+          <!-- Senate SVG Hemicycle Arc -->
+          <div style="display: flex; justify-content: center;">
+            <svg id="us-senate-svg" viewBox="0 0 260 135" style="width: 100%; max-width: 250px; height: auto;" aria-label="نمودار کرسی‌های مجلس سنا"></svg>
+          </div>
+
+          <!-- Threshold Bar -->
+          <div style="position: relative;">
+            <div style="height: 24px; width: 100%; background: var(--border-subtle); border-radius: 8px; overflow: hidden; display: flex;">
+              <div style="width: 55%; background: var(--accent-blue); color: #fff; font-size: 11px; font-weight: 900; display: flex; align-items: center; padding-right: 8px;">۵۵</div>
+              <div style="width: 1%; background: #d4d3d1;"></div>
+              <div style="width: 44%; background: var(--accent-crimson); color: #fff; font-size: 11px; font-weight: 900; display: flex; align-items: center; justify-content: flex-end; padding-left: 8px;">۴۴</div>
+            </div>
+            <div style="position: absolute; top: -3px; bottom: -3px; right: 50%; width: 2px; background: #000000;" title="آستانه کنترل ۵۰ کرسی"></div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 8px 10px; display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <div style="font-size: 11px; font-weight: 800; color: var(--accent-blue);">دموکرات‌ها</div>
+                <div style="font-size: 10px; color: var(--ink-muted);">۸+ کرسی خالص</div>
+              </div>
+              <span style="font-size: 16px; font-weight: 900;">۵۵</span>
+            </div>
+
+            <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 8px 10px; display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <div style="font-size: 11px; font-weight: 800; color: var(--accent-crimson);">جمهوری‌خواهان</div>
+                <div style="font-size: 10px; color: var(--ink-muted);">۸− کرسی خالص</div>
+              </div>
+              <span style="font-size: 16px; font-weight: 900;">۴۴</span>
+            </div>
+          </div>
+
+          <div style="font-size: 10px; color: var(--ink-muted);">
+            ۳۵ کرسی مورد رقابت بود؛ ۳۴ کرسی شمارش شده و ۱ کرسی هنوز اعلام نشده است
+          </div>
+        </div>
+
+        <!-- House of Representatives Card -->
+        <div class="elevated-card" style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <span style="font-size: 12.5px; font-weight: 900;">مجلس نمایندگان (House)</span>
+            <span style="font-size: 10px; font-weight: 700; background: var(--bg-surface); border: 1px solid var(--border-subtle); padding: 2px 8px; border-radius: 6px;">
+              ۲۱۸ کرسی لازم برای اکثریت
+            </span>
+          </div>
+
+          <!-- House SVG Hemicycle Arc -->
+          <div style="display: flex; justify-content: center;">
+            <svg id="us-house-svg" viewBox="0 0 260 135" style="width: 100%; max-width: 250px; height: auto;" aria-label="نمودار کرسی‌های مجلس نمایندگان"></svg>
+          </div>
+
+          <!-- Threshold Bar (435 seats total) -->
+          <div style="position: relative;">
+            <div style="height: 24px; width: 100%; background: var(--border-subtle); border-radius: 8px; overflow: hidden; display: flex;">
+              <div style="width: 58.9%; background: var(--accent-blue); color: #fff; font-size: 11px; font-weight: 900; display: flex; align-items: center; padding-right: 8px;">۲۵۶</div>
+              <div style="width: 2.3%; background: #d4d3d1;"></div>
+              <div style="width: 38.8%; background: var(--accent-crimson); color: #fff; font-size: 11px; font-weight: 900; display: flex; align-items: center; justify-content: flex-end; padding-left: 8px;">۱۶۹</div>
+            </div>
+            <div style="position: absolute; top: -3px; bottom: -3px; right: 50.1%; width: 2px; background: #000000;" title="اکثریت ۲۱۸ کرسی"></div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 8px 10px; display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <div style="font-size: 11px; font-weight: 800; color: var(--accent-blue);">دموکرات‌ها</div>
+                <div style="font-size: 10px; color: var(--ink-muted);">۴۲+ کرسی</div>
+              </div>
+              <span style="font-size: 16px; font-weight: 900;">۲۵۶</span>
+            </div>
+
+            <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 8px 10px; display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <div style="font-size: 11px; font-weight: 800; color: var(--accent-crimson);">جمهوری‌خواهان</div>
+                <div style="font-size: 10px; color: var(--ink-muted);">۴۲− کرسی</div>
+              </div>
+              <span style="font-size: 16px; font-weight: 900;">۱۶۹</span>
+            </div>
+          </div>
+
+          <div style="font-size: 10px; color: var(--ink-muted);">
+            ۴۲۵ از ۴۳۵ حوزه اعلام شده؛ ۱۰ حوزه باقی‌مانده (۶ دموکرات و ۴ جمهوری‌خواه پیشتاز)
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--ink-muted); padding: 0 2px;">
+          <span>تا ۲۴ آبان ۱۴۰۵ (۱۵ نوامبر ۲۰۲۶)</span>
+          <span>Associated Press · BBC News</span>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           SECTION 4: CAISSA RECOMMENDED PORTFOLIO (سبد پیشنهادی کایسا)
+           ===================================================================== -->
+      <section id="sec-portfolio" class="report-section portfolio-section">
+        <div class="section-header">
+          <div>
+            <span class="section-kicker" style="color: #a3a3a3;">بخش چهارم • HODL Positions</span>
+            <h2 class="section-title" style="color: #ffffff;">سبد پیشنهادی کایسا</h2>
+            <span style="font-size: 11px; color: #a3a3a3;">توزیع دارایی‌ها (Distribution of Assets)</span>
+          </div>
+          <span style="font-size: 11px; font-weight: 900; background: #1f1f1f; color: #fbbf24; border: 1px solid #333333; padding: 4px 10px; border-radius: 8px;">
+            مجموع ۱۰۰٪
+          </span>
+        </div>
+
+        <!-- Interactive Pure-SVG Donut Chart -->
+        <div class="portfolio-dark-card" style="display: flex; flex-direction: column; align-items: center;">
+          <div style="position: relative; width: 190px; height: 190px; display: flex; align-items: center; justify-content: center;">
+            <svg id="portfolio-donut-svg" viewBox="0 0 200 200" style="width: 100%; height: 100%; transform: rotate(-90deg); overflow: visible;" aria-label="نمودار دونات سبد پیشنهادی کایسا"></svg>
+            <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none; text-align: center;">
+              <span id="donut-main-val" style="font-size: 24px; font-weight: 900; color: #ffffff; line-height: 1.1;">۱۰۰٪</span>
+              <span id="donut-sub-lbl" style="font-size: 11px; color: #a3a3a3; margin-top: 3px;">کل سبد دارایی</span>
+            </div>
+          </div>
+          <span style="font-size: 10px; color: #8a8a8a; margin-top: 8px;">
+            برای بررسی هر دارایی روی بخش نمودار یا کارت آن ضربه بزنید
+          </span>
+        </div>
+
+        <!-- 4 Asset Legend Cards -->
+        <div id="portfolio-assets-grid" class="asset-grid">
+          <!-- Populated by renderPortfolio() -->
+        </div>
+
+        <!-- Interactive Capital Allocation Calculator -->
+        <div class="portfolio-dark-card" style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <span style="font-size: 12px; font-weight: 800; color: #ffffff;">محاسبه‌گر تخصیص سرمایه</span>
+            <span id="calc-unit-badge" style="font-size: 10px; font-weight: 700; color: #fbbf24;">میلیون تومان</span>
+          </div>
+
+          <!-- Preset Buttons -->
+          <div class="preset-grid" id="calc-presets">
+            <button type="button" class="preset-btn active" data-amount="100" data-unit="TOMAN">۱۰۰ میلیون تومان</button>
+            <button type="button" class="preset-btn" data-amount="500" data-unit="TOMAN">۵۰۰ میلیون تومان</button>
+            <button type="button" class="preset-btn" data-amount="1000" data-unit="TOMAN">۱ میلیارد تومان</button>
+            <button type="button" class="preset-btn" data-amount="10000" data-unit="USD">۱۰,۰۰۰ دلار</button>
+          </div>
+
+          <!-- Custom Input + Unit Switch -->
+          <div class="calc-input-row">
+            <input
+              id="calc-custom-input"
+              type="number"
+              inputmode="numeric"
+              min="1"
+              value="100"
+              class="calc-input"
+              aria-label="مبلغ دلخواه سرمایه‌گذاری"
+              placeholder="مبلغ دلخواه..."
+            />
+            <div class="unit-toggle">
+              <button type="button" class="unit-btn active" data-set-unit="TOMAN">میلیون تومان</button>
+              <button type="button" class="unit-btn" data-set-unit="USD">دلار ($)</button>
+            </div>
+          </div>
+
+          <!-- Live Calculated Breakdown -->
+          <div id="calc-results-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding-top: 6px; border-top: 1px solid #262626;">
+            <!-- Populated by renderCalculator() -->
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER WITH CAISSA GEOMETRIC SVG LOGO -->
+    <footer class="footer-bar">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="width: 22px; height: 26px; flex-shrink: 0;">
+          <svg viewBox="0 0 100 120" width="100%" height="100%" aria-label="لوگوی کایسا">
+            <rect x="62" y="0" width="38" height="38" fill="#000000" />
+            <rect x="0" y="38" width="62" height="62" fill="#000000" />
+            <rect x="62" y="100" width="24" height="20" fill="#000000" />
+          </svg>
+        </div>
+        <div>
+          <div style="font-size: 11.5px; font-weight: 800; color: var(--ink-primary);">واحد تحلیل و پژوهش کایسا</div>
+          <div style="font-size: 10px; color: var(--ink-muted);">چشم‌انداز ۳ ماهه • Caissa</div>
+        </div>
+      </div>
+
+      <a href="#sec-summary" class="top-btn">بازگشت به بالا ↑</a>
+    </footer>
+
+  </div>
+
+  <!-- =========================================================================
+       DEFENSIVE VANILLA JAVASCRIPT (ZERO EXTERNAL DEPENDENCIES)
+       ========================================================================= -->
+  <script>
+    (function () {
+      'use strict';
+
+      // Utility: Convert Western digits to Persian digits
+      function toFa(val) {
+        var digits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+        return String(val).replace(/\d/g, function (d) {
+          return digits[Number(d)];
+        });
+      }
+
+      // Utility: Format numbers cleanly in Persian
+      function formatFaNum(num) {
+        if (!isFinite(num) || num < 0) num = 0;
+        var rounded = Math.round(num * 10) / 10;
+        var parts = String(rounded).split('.');
+        parts[0] = Number(parts[0]).toLocaleString('en-US');
+        return toFa(parts.join('.'));
+      }
+
+      // =======================================================================
+      // 1. FULL-OPEN HIERARCHICAL MIND MAP DATA & RENDERER
+      // =======================================================================
+      var mindMapTree = {
+        id: 'root',
+        label: 'احتمالات (سناریوهای میان‌مدت ۳ ماهه)',
+        percent: null,
+        outcomes: ['war', 'siege', 'deal'],
+        children: [
+          {
+            id: 'eisenkot',
+            label: 'آیزنکوت',
+            percent: '۳۳٪',
+            isActor: true,
+            actorStyle: 'blue',
+            dotColor: '#1d4ed8',
+            outcomes: ['war', 'siege', 'deal'],
+            children: [
+              {
+                id: 'no-war',
+                label: 'جنگ نداریم',
+                percent: null,
+                dotColor: '#15803d',
+                outcomes: ['siege', 'deal'],
+                children: [
+                  {
+                    id: 'siege-to-deal',
+                    label: 'ادامه محاصره تا توافق',
+                    percent: '۹۰٪',
+                    dotColor: '#b45309',
+                    outcomes: ['siege', 'deal'],
+                    children: []
+                  }
+                ]
+              },
+              {
+                id: 'yes-war',
+                label: 'جنگ داریم',
+                percent: '۱۰٪',
+                dotColor: '#b91c1c',
+                outcomes: ['war'],
+                children: []
+              }
+            ]
+          },
+          {
+            id: 'netanyahu',
+            label: 'نتانیاهو',
+            percent: '۶۶٪',
+            isActor: true,
+            actorStyle: 'black',
+            dotColor: '#b91c1c',
+            outcomes: ['war', 'siege', 'deal'],
+            children: [
+              {
+                id: 'rep-senate',
+                label: 'سنای جمهوری‌خواه',
+                percent: '۳۰٪',
+                dotColor: '#b91c1c',
+                outcomes: ['siege'],
+                children: [
+                  {
+                    id: 'siege-rep',
+                    label: 'ادامه محاصره',
+                    percent: null,
+                    dotColor: '#b45309',
+                    outcomes: ['siege'],
+                    children: []
+                  }
+                ]
+              },
+              {
+                id: 'dem-senate',
+                label: 'سنای دموکرات',
+                percent: null,
+                dotColor: '#1d4ed8',
+                outcomes: ['war', 'siege', 'deal'],
+                children: [
+                  {
+                    id: 'war-2m',
+                    label: 'جنگ در فرصت دوماه',
+                    percent: '۵۰٪',
+                    dotColor: '#b91c1c',
+                    outcomes: ['war'],
+                    children: [
+                      {
+                        id: 'infra',
+                        label: 'زیرساختی',
+                        percent: null,
+                        dotColor: '#b91c1c',
+                        outcomes: ['war'],
+                        children: [
+                          {
+                            id: 'ebgha-hokoomat',
+                            label: 'ابقا حکومت',
+                            percent: null,
+                            dotColor: '#475569',
+                            outcomes: ['war'],
+                            children: []
+                          }
+                        ]
+                      },
+                      {
+                        id: 'non-infra',
+                        label: 'غیر زیرساختی',
+                        percent: null,
+                        dotColor: '#b91c1c',
+                        outcomes: ['war'],
+                        children: [
+                          {
+                            id: 'regime-change',
+                            label: 'رژیم چنج',
+                            percent: null,
+                            dotColor: '#b91c1c',
+                            outcomes: ['war'],
+                            children: []
+                          },
+                          {
+                            id: 'baghi-mandan',
+                            label: 'باقی ماندن حکومت',
+                            percent: null,
+                            dotColor: '#475569',
+                            outcomes: ['war'],
+                            children: []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    id: 'siege-dem',
+                    label: 'ادامه محاصره',
+                    percent: '۲۰٪',
+                    dotColor: '#b45309',
+                    outcomes: ['siege'],
+                    children: []
+                  },
+                  {
+                    id: 'deal-dem',
+                    label: 'توافق',
+                    percent: '۳۰٪',
+                    dotColor: '#15803d',
+                    outcomes: ['deal'],
+                    children: [
+                      {
+                        id: 'sustainable',
+                        label: 'پایدار',
+                        percent: null,
+                        dotColor: '#15803d',
+                        outcomes: ['deal'],
+                        children: []
+                      },
+                      {
+                        id: 'unsustainable',
+                        label: 'ناپایدار',
+                        percent: null,
+                        dotColor: '#b45309',
+                        outcomes: ['deal'],
+                        children: []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      };
+
+      var activeFilter = 'all';
+      var selectedNodeId = null;
+
+      function getAncestorPath(node, targetId, path) {
+        var next = path.concat([node]);
+        if (node.id === targetId) return next;
+        for (var i = 0; i < node.children.length; i++) {
+          var res = getAncestorPath(node.children[i], targetId, next);
+          if (res) return res;
+        }
+        return null;
+      }
+
+      function getDescendantSet(node, set) {
+        set[node.id] = true;
+        for (var i = 0; i < node.children.length; i++) {
+          getDescendantSet(node.children[i], set);
+        }
+        return set;
+      }
+
+      function renderMindMap() {
+        var rootEl = document.getElementById('mindmap-root');
+        if (!rootEl) return;
+
+        var ancestorPath = selectedNodeId ? getAncestorPath(mindMapTree, selectedNodeId, []) : null;
+        var ancestorSet = {};
+        var descendantSet = {};
+
+        if (ancestorPath && ancestorPath.length > 0) {
+          for (var i = 0; i < ancestorPath.length; i++) {
+            ancestorSet[ancestorPath[i].id] = true;
+          }
+          getDescendantSet(ancestorPath[ancestorPath.length - 1], descendantSet);
+        }
+
+        function nodeState(node) {
+          var isSel = selectedNodeId === node.id;
+          var isChain = !isSel && (ancestorSet[node.id] || descendantSet[node.id]);
+          var isDimmed = false;
+          if (selectedNodeId) {
+            isDimmed = !isSel && !isChain;
+          } else if (activeFilter !== 'all') {
+            isDimmed = !(node.outcomes && node.outcomes.indexOf(activeFilter) !== -1);
+          }
+          return { sel: isSel, chain: isChain, dimmed: isDimmed };
+        }
+
+        function nodeBox(node) {
+          var st = nodeState(node);
+          var cls = 'node-box';
+          if (node.id === mindMapTree.id) cls += ' is-root';
+          if (node.isActor) {
+            cls += ' is-actor-header';
+            if (node.actorStyle === 'blue') cls += ' actor-blue';
+          }
+          if (st.sel) cls += ' is-selected';
+          else if (st.chain) cls += ' is-in-chain';
+          if (st.dimmed) cls += ' is-dimmed';
+
+          var html = '<div class="' + cls + '" data-node-id="' + node.id + '">';
+          html += '<span class="node-label">';
+          html += '<span class="dot" style="background-color: ' + (node.isActor ? '#ffffff' : (node.dotColor || '#000000')) + ';"></span>';
+          html += '<span>' + node.label + '</span>';
+          html += '</span>';
+          if (node.percent) html += '<span class="node-pct">' + node.percent + '</span>';
+          return html + '</div>';
+        }
+
+        // lineColor paints the spine of this level, each child's dotColor paints its own elbow
+        function renderChildrenList(children, lineColor) {
+          if (!children || children.length === 0) return '';
+          var html = '<div class="tree-branch-list" style="--line: ' + lineColor + ';">';
+          for (var i = 0; i < children.length; i++) {
+            var child = children[i];
+            var elbow = child.dotColor || lineColor;
+            html += '<div class="tree-item' + (nodeState(child).dimmed ? ' is-dimmed' : '') + '" style="--elbow: ' + elbow + ';">';
+            html += nodeBox(child);
+            html += renderChildrenList(child.children, elbow);
+            html += '</div>';
+          }
+          return html + '</div>';
+        }
+
+        rootEl.innerHTML = nodeBox(mindMapTree) + renderChildrenList(mindMapTree.children, '#b9b8b6');
+
+        // Keep the tapped node on screen — the map is taller than the phone viewport
+        var selectedEl = rootEl.querySelector('.node-box.is-selected');
+        if (selectedEl) selectedEl.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+
+        // Update Breadcrumb
+        var bcEl = document.getElementById('mm-breadcrumb');
+        var resetBtn = document.getElementById('mm-reset-btn');
+        if (ancestorPath && ancestorPath.length > 1) {
+          var chainLabels = [];
+          for (var k = 1; k < ancestorPath.length; k++) {
+            var item = ancestorPath[k];
+            chainLabels.push(item.label + (item.percent ? ' (' + item.percent + ')' : ''));
+          }
+          bcEl.innerHTML = chainLabels.join(' <span style="color: var(--ink-muted); margin: 0 4px;">←</span> ');
+          if (resetBtn) resetBtn.style.display = 'inline';
+        } else {
+          bcEl.textContent = 'روی هر گره ضربه بزنید تا زنجیره ارتباطی آن از ریشه تا نتیجه برجسته شود';
+          if (resetBtn) resetBtn.style.display = 'none';
+        }
+      }
+
+      // =======================================================================
+      // 2. ISRAEL 2026 ELECTION: 120-SEAT HEMICYCLE SVG & 11-PARTY BARS
+      // =======================================================================
+      function buildHemicycleDots(svgEl, segments, totalSeats, majorityLabel) {
+        if (!svgEl) return;
+        // Arrange dots in 5 concentric semi-circular rows
+        var rows = [20, 22, 24, 26, 28];
+        var sumRows = rows.reduce(function (a, b) { return a + b; }, 0);
+        // Scale row counts if totalSeats differs from 120 (e.g., 100 for US Senate)
+        if (totalSeats !== sumRows) {
+          rows = [16, 18, 20, 22, 24]; // sum = 100
+        }
+
+        var cx = 150;
+        var cy = 145;
+        var innerR = 62;
+        var rowGap = 15.5;
+        var dotR = totalSeats === 100 ? 4.3 : 3.9;
+
+        // Generate all seat coordinates sorted by angle from left (PI) to right (0)
+        var seatCoords = [];
+        for (var rIdx = 0; rIdx < rows.length; rIdx++) {
+          var count = rows[rIdx];
+          var radius = innerR + rIdx * rowGap;
+          for (var sIdx = 0; sIdx < count; sIdx++) {
+            var angle = Math.PI - (sIdx / (count - 1)) * Math.PI;
+            seatCoords.push({
+              angle: angle,
+              x: cx + radius * Math.cos(angle),
+              y: cy - radius * Math.sin(angle)
+            });
+          }
+        }
+
+        // Sort descending by angle (left-to-right across the hemicycle)
+        seatCoords.sort(function (a, b) {
+          return b.angle - a.angle;
+        });
+
+        // Build flat color array matching segments
+        var seatColors = [];
+        for (var g = 0; g < segments.length; g++) {
+          for (var c = 0; c < segments[g].count; c++) {
+            seatColors.push(segments[g].color);
+          }
+        }
+
+        var svgMarkup = '';
+        for (var i = 0; i < seatCoords.length; i++) {
+          var pt = seatCoords[i];
+          var fill = seatColors[i] || '#d4d3d1';
+          svgMarkup += '<circle cx="' + pt.x.toFixed(1) + '" cy="' + pt.y.toFixed(1) + '" r="' + dotR + '" fill="' + fill + '" />';
+        }
+
+        // Center majority line & text
+        svgMarkup += '<line x1="150" y1="14" x2="150" y2="92" stroke="#000000" stroke-width="1.5" stroke-dasharray="3,2" />';
+        svgMarkup += '<text x="150" y="132" text-anchor="middle" font-family="Vazirmatn, Tahoma, sans-serif" font-size="22" font-weight="900" fill="#000000">' + toFa(totalSeats) + '</text>';
+        svgMarkup += '<text x="150" y="156" text-anchor="middle" font-family="Vazirmatn, Tahoma, sans-serif" font-size="10" font-weight="700" fill="#525252">' + majorityLabel + '</text>';
+
+        svgEl.innerHTML = svgMarkup;
+      }
+
+      var israelPartiesData = [
+        { fa: 'لیکود', en: 'Likud', seats: 27, color: '#0f294a' },
+        { fa: 'یاشار', en: 'Yashar', seats: 21, color: '#1d4ed8' },
+        { fa: 'ب‌یحاد', en: "B'Yachad", seats: 12, color: '#1d4ed8' },
+        { fa: 'لیست مشترک', en: 'Joint List', seats: 11, color: '#15803d' },
+        { fa: 'دموکرات‌ها', en: 'The Democrats', seats: 8, color: '#1d4ed8' },
+        { fa: 'رئام', en: "Ra'am", seats: 8, color: '#15803d' },
+        { fa: 'یسرائیل بیتینو', en: 'Yisrael Beiteinu', seats: 7, color: '#1d4ed8' },
+        { fa: 'یهدوت تورات', en: 'United Torah Judaism', seats: 7, color: '#0f294a' },
+        { fa: 'عوتسما یهودیت', en: 'Otzma Yehudit', seats: 7, color: '#0f294a' },
+        { fa: 'شاس', en: 'Shas', seats: 6, color: '#0f294a' },
+        { fa: 'صهیونیسم مذهبی', en: 'Religious Zionism', seats: 6, color: '#0f294a' }
+      ];
+
+      function renderIsraelParties() {
+        var container = document.getElementById('israel-parties-container');
+        if (!container) return;
+        var maxSeats = 27;
+        var html = '';
+        for (var i = 0; i < israelPartiesData.length; i++) {
+          var p = israelPartiesData[i];
+          var pct = ((p.seats / maxSeats) * 100).toFixed(1);
+          html += '<div class="party-row">';
+          html += '<div class="party-meta">';
+          html += '<span style="display: flex; align-items: center; gap: 6px; font-weight: 800;">';
+          html += '<span class="dot" style="background-color: ' + p.color + ';"></span>';
+          html += '<span>' + p.fa + '</span>';
+          html += '<span style="font-size: 10px; font-weight: 500; color: var(--ink-muted);">(' + p.en + ')</span>';
+          html += '</span>';
+          html += '<span style="font-weight: 900;">' + toFa(p.seats) + ' <span style="font-size: 10px; font-weight: 500; color: var(--ink-muted);">کرسی</span></span>';
+          html += '</div>';
+          html += '<div class="progress-track"><div class="progress-fill" style="width: ' + pct + '%; background-color: ' + p.color + ';"></div></div>';
+          html += '</div>';
+        }
+        container.innerHTML = html;
+      }
+
+      // =======================================================================
+      // 3. US 2026 ELECTION HEMICYCLE ARCS (SENATE & HOUSE)
+      // =======================================================================
+      function buildSimpleGauge(svgEl, demCount, repCount, otherCount, totalLabel) {
+        if (!svgEl) return;
+        var total = demCount + repCount + otherCount;
+        var cx = 130;
+        var cy = 120;
+        var r = 92;
+        var strokeW = 20;
+
+        var segments = [
+          { count: demCount, color: '#1d4ed8' },
+          { count: otherCount, color: '#d4d3d1' },
+          { count: repCount, color: '#b91c1c' }
+        ];
+
+        var curAngle = Math.PI;
+        var paths = '';
+        for (var i = 0; i < segments.length; i++) {
+          if (segments[i].count <= 0) continue;
+          var sweep = (segments[i].count / total) * Math.PI;
+          var nextAngle = curAngle - sweep;
+          var x1 = cx + r * Math.cos(curAngle);
+          var y1 = cy - r * Math.sin(curAngle);
+          var x2 = cx + r * Math.cos(nextAngle);
+          var y2 = cy - r * Math.sin(nextAngle);
+
+          paths += '<path d="M ' + x1.toFixed(2) + ' ' + y1.toFixed(2) + ' A ' + r + ' ' + r + ' 0 0 1 ' + x2.toFixed(2) + ' ' + y2.toFixed(2) + '" fill="none" stroke="' + segments[i].color + '" stroke-width="' + strokeW + '" />';
+          curAngle = nextAngle;
+        }
+
+        // Majority center tick
+        paths += '<line x1="130" y1="14" x2="130" y2="42" stroke="#000000" stroke-width="2" stroke-dasharray="3,2" />';
+        paths += '<text x="130" y="96" text-anchor="middle" font-family="Vazirmatn, Tahoma, sans-serif" font-size="18" font-weight="900" fill="#000000">' + totalLabel + '</text>';
+        paths += '<text x="130" y="114" text-anchor="middle" font-family="Vazirmatn, Tahoma, sans-serif" font-size="10" font-weight="600" fill="#525252">ترکیب کرسی‌ها</text>';
+
+        svgEl.innerHTML = paths;
+      }
+
+      // =======================================================================
+      // 4. CAISSA PORTFOLIO DONUT CHART & INTERACTIVE CAPITAL CALCULATOR
+      // =======================================================================
+      var portfolioAssets = [
+        { id: 'silver', fa: 'نقره', en: 'Silver', percent: 35, color: '#94a3b8', badgeColor: '#e2e8f0', desc: 'فلز گران‌بها و صنعتی' },
+        { id: 'gold', fa: 'طلا', en: 'Gold', percent: 25, color: '#f59e0b', badgeColor: '#fbbf24', desc: 'پناهگاه امن ژئوپلیتیک' },
+        { id: 'oil', fa: 'نفت', en: 'Oil', percent: 25, color: '#dc2626', badgeColor: '#f87171', desc: 'پوشش ریسک انرژی' },
+        { id: 'bitcoin', fa: 'بیت‌کوین', en: 'Bitcoin', percent: 15, color: '#3b82f6', badgeColor: '#60a5fa', desc: 'دارایی دیجیتال نامتقارن' }
+      ];
+
+      var selectedAssetId = null;
+      var calcAmount = 100;
+      var calcUnit = 'TOMAN';
+
+      function renderPortfolio() {
+        var svgEl = document.getElementById('portfolio-donut-svg');
+        var cardsEl = document.getElementById('portfolio-assets-grid');
+        var mainValEl = document.getElementById('donut-main-val');
+        var subLblEl = document.getElementById('donut-sub-lbl');
+        if (!svgEl || !cardsEl) return;
+
+        var radius = 72;
+        var circumference = 2 * Math.PI * radius;
+        var offsetPercent = 0;
+        var circlesHtml = '';
+
+        for (var i = 0; i < portfolioAssets.length; i++) {
+          var asset = portfolioAssets[i];
+          var segLen = (asset.percent / 100) * circumference;
+          var gap = 4;
+          var dashArray = Math.max(0, segLen - gap) + ' ' + circumference;
+          var dashOffset = -((offsetPercent / 100) * circumference);
+          offsetPercent += asset.percent;
+
+          var isSel = selectedAssetId === asset.id;
+          var strokeW = isSel ? 26 : 21;
+          var opacity = selectedAssetId && !isSel ? '0.38' : '1';
+
+          circlesHtml += '<circle cx="100" cy="100" r="' + radius + '" fill="transparent" stroke="' + asset.color + '" stroke-width="' + strokeW + '" stroke-dasharray="' + dashArray + '" stroke-dashoffset="' + dashOffset + '" style="opacity: ' + opacity + '; cursor: pointer; transition: all 0.2s ease;" data-asset-id="' + asset.id + '" />';
+        }
+        svgEl.innerHTML = circlesHtml;
+
+        if (selectedAssetId) {
+          var found = null;
+          for (var j = 0; j < portfolioAssets.length; j++) {
+            if (portfolioAssets[j].id === selectedAssetId) found = portfolioAssets[j];
+          }
+          if (found && mainValEl && subLblEl) {
+            mainValEl.textContent = toFa(found.percent) + '٪';
+            mainValEl.style.color = found.badgeColor;
+            subLblEl.textContent = found.fa + ' (' + found.en + ')';
+          }
+        } else if (mainValEl && subLblEl) {
+          mainValEl.textContent = '۱۰۰٪';
+          mainValEl.style.color = '#ffffff';
+          subLblEl.textContent = 'کل سبد دارایی';
+        }
+
+        var cardsHtml = '';
+        for (var k = 0; k < portfolioAssets.length; k++) {
+          var item = portfolioAssets[k];
+          var activeCls = selectedAssetId === item.id ? ' is-active' : '';
+          cardsHtml += '<div class="asset-card' + activeCls + '" data-asset-id="' + item.id + '">';
+          cardsHtml += '<div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">';
+          cardsHtml += '<span style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: #ffffff;">';
+          cardsHtml += '<span class="dot" style="background-color: ' + item.color + '; border-radius: 3px;"></span>';
+          cardsHtml += '<span>' + item.fa + '</span>';
+          cardsHtml += '</span>';
+          cardsHtml += '<span style="font-size: 14px; font-weight: 900; color: ' + item.badgeColor + ';">' + toFa(item.percent) + '٪</span>';
+          cardsHtml += '</div>';
+          cardsHtml += '<div style="font-size: 10px; color: #a3a3a3;">' + item.desc + '</div>';
+          cardsHtml += '</div>';
+        }
+        cardsEl.innerHTML = cardsHtml;
+      }
+
+      function renderCalculator() {
+        var resultsEl = document.getElementById('calc-results-grid');
+        var unitBadge = document.getElementById('calc-unit-badge');
+        if (!resultsEl) return;
+
+        var unitText = calcUnit === 'TOMAN' ? 'میلیون تومان' : 'دلار';
+        if (unitBadge) unitBadge.textContent = unitText;
+
+        var html = '';
+        for (var i = 0; i < portfolioAssets.length; i++) {
+          var asset = portfolioAssets[i];
+          var val = (calcAmount * asset.percent) / 100;
+          html += '<div style="background: #000000; border: 1px solid #262626; border-radius: 8px; padding: 7px 9px; display: flex; align-items: center; justify-content: space-between; font-size: 11px;">';
+          html += '<span style="color: #d4d4d4; display: flex; align-items: center; gap: 5px;">';
+          html += '<span class="dot" style="background-color: ' + asset.color + ';"></span>';
+          html += asset.fa;
+          html += '</span>';
+          html += '<span style="font-weight: 900; color: #ffffff;">' + formatFaNum(val) + ' <span style="font-size: 9px; font-weight: 500; color: #8a8a8a;">' + unitText + '</span></span>';
+          html += '</div>';
+        }
+        resultsEl.innerHTML = html;
+      }
+
+      // =======================================================================
+      // 5. EVENT BINDING & SCROLL SPY
+      // =======================================================================
+      function bindEvents() {
+        // Mind map node selection
+        var mmRoot = document.getElementById('mindmap-root');
+        if (mmRoot) {
+          mmRoot.addEventListener('click', function (e) {
+            var target = e.target;
+            while (target && target !== mmRoot) {
+              if (target.hasAttribute && target.hasAttribute('data-node-id')) {
+                var id = target.getAttribute('data-node-id');
+                selectedNodeId = (id === mindMapTree.id || selectedNodeId === id) ? null : id;
+                renderMindMap();
+                return;
+              }
+              target = target.parentNode;
+            }
+          });
+        }
+
+        // Mind map reset button
+        var mmReset = document.getElementById('mm-reset-btn');
+        if (mmReset) {
+          mmReset.addEventListener('click', function () {
+            selectedNodeId = null;
+            renderMindMap();
+          });
+        }
+
+        // Mind map filter pills
+        var filterBar = document.getElementById('mm-filter-bar');
+        if (filterBar) {
+          filterBar.addEventListener('click', function (e) {
+            var btn = e.target.closest ? e.target.closest('.filter-btn') : null;
+            if (!btn) return;
+            activeFilter = btn.getAttribute('data-filter') || 'all';
+            selectedNodeId = null;
+            var allBtns = filterBar.querySelectorAll('.filter-btn');
+            for (var i = 0; i < allBtns.length; i++) {
+              allBtns[i].classList.remove('active');
+            }
+            btn.classList.add('active');
+            renderMindMap();
+          });
+        }
+
+        // Portfolio slice & card clicks
+        var portSec = document.getElementById('sec-portfolio');
+        if (portSec) {
+          portSec.addEventListener('click', function (e) {
+            var el = e.target;
+            while (el && el !== portSec) {
+              if (el.hasAttribute && el.hasAttribute('data-asset-id')) {
+                var id = el.getAttribute('data-asset-id');
+                selectedAssetId = selectedAssetId === id ? null : id;
+                renderPortfolio();
+                return;
+              }
+              el = el.parentNode;
+            }
+          });
+        }
+
+        // Calculator preset buttons
+        var presetsBox = document.getElementById('calc-presets');
+        var customInput = document.getElementById('calc-custom-input');
+        var unitBtns = document.querySelectorAll('.unit-btn');
+
+        function syncUnitButtons() {
+          for (var i = 0; i < unitBtns.length; i++) {
+            if (unitBtns[i].getAttribute('data-set-unit') === calcUnit) {
+              unitBtns[i].classList.add('active');
+            } else {
+              unitBtns[i].classList.remove('active');
+            }
+          }
+        }
+
+        if (presetsBox) {
+          presetsBox.addEventListener('click', function (e) {
+            var btn = e.target.closest ? e.target.closest('.preset-btn') : null;
+            if (!btn) return;
+            calcAmount = Number(btn.getAttribute('data-amount')) || 100;
+            calcUnit = btn.getAttribute('data-unit') || 'TOMAN';
+            if (customInput) customInput.value = calcAmount;
+
+            var allPresets = presetsBox.querySelectorAll('.preset-btn');
+            for (var i = 0; i < allPresets.length; i++) {
+              allPresets[i].classList.remove('active');
+            }
+            btn.classList.add('active');
+            syncUnitButtons();
+            renderCalculator();
+          });
+        }
+
+        if (customInput) {
+          customInput.addEventListener('input', function () {
+            var val = parseFloat(customInput.value);
+            calcAmount = isFinite(val) && val >= 0 ? val : 0;
+            if (presetsBox) {
+              var allPresets = presetsBox.querySelectorAll('.preset-btn');
+              for (var i = 0; i < allPresets.length; i++) {
+                allPresets[i].classList.remove('active');
+              }
+            }
+            renderCalculator();
+          });
+        }
+
+        for (var u = 0; u < unitBtns.length; u++) {
+          unitBtns[u].addEventListener('click', function () {
+            calcUnit = this.getAttribute('data-set-unit') || 'TOMAN';
+            syncUnitButtons();
+            renderCalculator();
+          });
+        }
+
+        // Scroll Spy for Sticky Header Pills
+        var navLinks = document.querySelectorAll('.nav-pill');
+        var sectionIds = ['sec-summary', 'sec-mindmap', 'sec-israel', 'sec-us', 'sec-portfolio'];
+
+        window.addEventListener('scroll', function () {
+          var scrollPos = window.scrollY + 130;
+          var current = sectionIds[0];
+          for (var i = 0; i < sectionIds.length; i++) {
+            var sec = document.getElementById(sectionIds[i]);
+            if (sec && sec.offsetTop <= scrollPos) {
+              current = sectionIds[i];
+            }
+          }
+          for (var j = 0; j < navLinks.length; j++) {
+            var href = navLinks[j].getAttribute('href');
+            if (href === '#' + current) {
+              navLinks[j].classList.add('active');
+            } else {
+              navLinks[j].classList.remove('active');
+            }
+          }
+        }, { passive: true });
+      }
+
+      // Initialize safely on DOM ready
+      function init() {
+        try {
+          renderMindMap();
+          buildHemicycleDots(
+            document.getElementById('knesset-svg'),
+            [
+              { count: 53, color: '#0f294a' },
+              { count: 48, color: '#1d4ed8' },
+              { count: 19, color: '#15803d' }
+            ],
+            120,
+            '۶۱ کرسی برای اکثریت'
+          );
+          renderIsraelParties();
+          buildSimpleGauge(document.getElementById('us-senate-svg'), 55, 44, 1, '۱۰۰ کرسی');
+          buildSimpleGauge(document.getElementById('us-house-svg'), 256, 169, 10, '۴۳۵ کرسی');
+          renderPortfolio();
+          renderCalculator();
+          bindEvents();
+        } catch (err) {
+          console.error('Initialization error:', err);
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+</body>
+</html>
